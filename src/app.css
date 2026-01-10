@@ -1,0 +1,99 @@
+:root {
+  font-family: Garamond, system-ui;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary: hsl(290deg, 91%, 87%);
+  --secondary: hsl(213deg, 48%, 58%);
+  --accent: hsl(175deg, 31%, 23%);
+  --reset: hsl(0deg, 63%, 26%);
+}
+
+[data-theme="light"] {
+  --background: hsl(78deg, 2%, 91%);
+  --background1: hsl(78deg, 2%, 88%);
+  --text: hsl(0deg, 0%, 0%);
+  --text10: hsl(0deg, 0%, 0%, 0.1);
+  --text80: hsl(0deg, 0%, 0%, 0.8);
+  --text50: hsl(0deg, 0%, 0%, 0.5);
+}
+
+[data-theme="dark"] {
+  --background: hsl(78deg, 2%, 9%);
+  --background1: hsl(78deg, 2%, 12%);
+  --text: hsl(0deg, 0%, 100%);
+  --text10: hsl(0deg, 0%, 100%, 0.1);
+  --text80: hsl(0deg, 0%, 100%, 0.8);
+  --text50: hsl(0deg, 0%, 100%, 0.5);
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.813rem;
+}
+
+h2 {
+  font-size: 3.063;
+}
+
+h3 {
+  font-size: 2.438rem;
+}
+
+h4 {
+  font-size: 1.938rem;
+}
+
+h5 {
+  font-size: 1.563rem;
+}
+
+h6 {
+  font-size: 1.250rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+#app {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
