@@ -16,13 +16,16 @@
         border-radius: 5px;
         justify-content: center;
         align-self: stretch;
-        margin: 1em;
+        padding: 2.1em;
+        margin: 0.5em 1em 1em 1em;
+        width: 100%;
         height: 100%;
-        border: 1px solid var(--primary);
+        background-color: var(--background);
     }
 
     h5 {
         font-weight: normal;
         margin: 0;
+        line-height: 1em;
     }
 </style>

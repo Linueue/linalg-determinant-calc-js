@@ -5,6 +5,7 @@
 
   color-scheme: light dark;
   background-color: var(--background);
+  color: var(--text);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,7 +15,7 @@
   --primary: hsl(290deg, 91%, 87%);
   --secondary: hsl(213deg, 48%, 58%);
   --accent: hsl(175deg, 31%, 23%);
-  --reset: hsl(0deg, 63%, 26%);
+  --reset: hsl(0deg, 63%, 50%);
 }
 
 [data-theme="light"] {
@@ -33,15 +34,6 @@
   --text10: hsl(0deg, 0%, 100%, 0.1);
   --text80: hsl(0deg, 0%, 100%, 0.8);
   --text50: hsl(0deg, 0%, 100%, 0.5);
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -80,7 +72,10 @@ p {
 }
 
 #app {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
   margin: 0;
   text-align: center;
 }

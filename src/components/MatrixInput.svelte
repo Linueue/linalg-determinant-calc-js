@@ -52,7 +52,7 @@
         width: 2.5em;
         padding: 0em;
         border-radius: 5px;
-        border: 2px solid var(--accent);
+        border: 2px solid transparent;
         background-color: var(--background);
         text-align: center;
         color: var(--text);

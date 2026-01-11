@@ -39,6 +39,8 @@
 
   function calcDeterminant()
   {
+      isCalculated = false;
+
       const n = matrixSizeInt;
       let matrix = new Matrix(n, n);
 
@@ -48,6 +50,12 @@
           {
               const str = matrixInputs[i][j];
               const parsed = parseFloat(str);
+
+              if(Number.isNaN(parsed))
+              {
+                  console.error("Handle this");
+              }
+
               matrix.set(i, j, parsed);
           }
       }
@@ -80,7 +88,7 @@
                     <Button name="Reset" onClick={reset} color="var(--reset)" />
                 </div>
                 {#if isCalculated}
-                    <div in:slide={{ duration: 200 }} out:fade={{ duration: 200 }}>
+                    <div transition:slide={{ duration: 200 }} class="calculation-container">
                         <div class="calculation-container">
                             <Output determinant={calculated} />
                         </div>
@@ -92,6 +100,11 @@
 </main>
 
 <style>
+    main {
+        display: flex;
+        flex: 1;
+    }
+
     .title {
         text-align: left;
         align-self: start;
@@ -103,19 +116,19 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        width: 100%;
-        height: 100%;
+        flex: 1;
     }
 
     .content-center {
         display: flex;
         flex-direction: column;
         align-items: start;
+        flex: 1;
+        padding: 0.5em;
         background-color: var(--background1);
         border-radius: 5px;
         max-width: 50rem;
         width: 100%;
-        height: 100%;
     }
 
     .matrix-container {
@@ -133,7 +146,7 @@
     }
 
     .input-container {
-        margin: 1em;
+        margin: 0.5em 1em;
         margin-bottom: 0.5em;
     }
 
@@ -141,7 +154,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 85vh;
+        justify-content: center;
+        flex: 1;
         padding: 1em;
     }
 </style>
