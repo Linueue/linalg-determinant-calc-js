@@ -15,7 +15,7 @@ winget install OpenJS.NodeJS
 2. Clone the repo
 
 ```
-git clone https://github.com/Linueue/linalg-determinant-calc-js
+git clone https://github.com/Linueue/linalg-determinant-calc-js.git
 ```
 
 3. Go to the repo's directory

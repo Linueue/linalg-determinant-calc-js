@@ -44,7 +44,14 @@
         flex-direction: row;
         align-items: center;
         overflow-x: auto;
+        min-width: 0;
+        max-width: 100%;
         padding: 0em 1em;
+        scrollbar-width: thin;
+    }
+
+    table {
+        border-collapse: collapse;
     }
 
     input {
@@ -65,12 +72,8 @@
         border-color: var(--primary);
     }
 
-    input::-webkit-outer-sin-button, input::-webkit-inner-spin-button {
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-    }
-
-    p {
-        margin: 0em;
     }
 </style>

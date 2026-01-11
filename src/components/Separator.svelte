@@ -3,6 +3,6 @@
 <style>
     hr {
         width: 95%;
-        border: 1px solid var(--primary);
+        border: 1px solid var(--background);
     }
 </style>

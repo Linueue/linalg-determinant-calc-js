@@ -61,7 +61,9 @@
           }
       }
 
-      calculated = determinant(matrix);
+      const ROUND_UP_TO = 5;
+      const ROUND_MULTIPLIER = Math.pow(10, ROUND_UP_TO);
+      calculated = Math.round((determinant(matrix) + Number.EPSILON) * ROUND_MULTIPLIER) / ROUND_MULTIPLIER;
       isCalculated = true;
   }
 
@@ -77,7 +79,7 @@
         <div class="content">
             <div class="content-center">
                 <div class="input-container">
-                    <Input prefix="Size of the matrix (n) = " bind:value={matrixSize} hint="Supports up to n <= 10" />
+                    <Input prefix="Size of the matrix (n) = " bind:value={matrixSize} hint="Supports n <= 10" />
                 </div>
                 <Separator />
                 <div class="matrix-container">
@@ -108,9 +110,18 @@
 
     .title {
         text-align: left;
-        align-self: start;
+        align-self: stretch;
         margin: 0.1em 0.5em;
+        margin-bottom: 0.1em;
         font-weight: normal;
+    }
+
+    @media only screen and (max-width: 570px) {
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 1em;
+        }
     }
 
     .content-container {
@@ -118,6 +129,7 @@
         flex-direction: column;
         align-items: stretch;
         flex: 1;
+        width: 100%;
     }
 
     .content-center {
@@ -137,6 +149,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        min-width: 0;
     }
 
     .calculation-container {
@@ -144,6 +157,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        min-width: 0;
     }
 
     .input-container {

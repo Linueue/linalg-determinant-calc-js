@@ -35,7 +35,7 @@
         border-color: var(--primary);
     }
 
-    input::-webkit-outer-sin-button, input::-webkit-inner-spin-button {
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
