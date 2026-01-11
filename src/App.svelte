@@ -33,7 +33,8 @@
 
   function reset()
   {
-      matrixInputsElement.forEach((x) => x.value = "0");
+      matrixInputsElement.forEach((x) => { if(x) x.value = "0" });
+      matrixInputs = Array.from({ length: matrixSizeInt }, () => Array(matrixSizeInt).fill("0"))
       isCalculated = false;
   }
 
