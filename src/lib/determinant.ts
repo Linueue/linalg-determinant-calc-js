@@ -51,7 +51,7 @@ export function determinant(matrix: Matrix): number
     }
 
     if(n == 1)
-        return matrix.get(0, 0)
+        return matrix.get(0, 0);
 
     let det = 0;
 
