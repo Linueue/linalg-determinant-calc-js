@@ -6,7 +6,7 @@
 
 0. Install Node
 
-Install it in the original site, or if you're in Windows, you can use the ocmmand line, and type,
+Install it in the original site, or if you're in Windows, you can use the command line, and type,
 
 ```
 winget install OpenJS.NodeJS
@@ -18,7 +18,7 @@ winget install OpenJS.NodeJS
 npm install
 ```
 
-2. Compile to a single .HTMl file
+2. Compile to a single .HTML file
 
 ```
 npm run build
