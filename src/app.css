@@ -16,9 +16,16 @@
   --secondary: hsl(213deg, 48%, 58%);
   --accent: hsl(175deg, 31%, 23%);
   --reset: hsl(0deg, 63%, 50%);
+ 
+  --toastContainerTop: 5rem;
+  --toastContainerRight: auto;
+  --toastContainerBottom: auto;
+  --toastContainerLeft: calc(50vw - (15rem / 2));
+  --toastWidth: 15rem;
 }
 
 [data-theme="light"] {
+  --primary: hsl(290deg, 91%, 75%);
   --background: hsl(78deg, 2%, 80%);
   --background1: hsl(78deg, 2%, 91%);
   --text: hsl(0deg, 0%, 0%);

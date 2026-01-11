@@ -4,13 +4,12 @@
   import MatrixInput from './components/MatrixInput.svelte'
   import Button from './components/Button.svelte'
   import Output from './components/Output.svelte'
+  import Toast from './components/Toast.svelte'
+  import Theme from './components/Theme.svelte'
+  import { SvelteToast, toast } from '@zerodevx/svelte-toast'
   import { slide, fade } from 'svelte/transition'
   import { Matrix } from './lib/matrix'
   import { determinant } from './lib/determinant'
-  import { theme } from './theme'
-
-  let currentTheme: string;
-  $: $theme, currentTheme = $theme;
 
   function parseMatrixSize(size: string): number
   {
@@ -18,8 +17,11 @@
           return 1;
       const parsed = parseInt(size);
 
-      if(Number.isNaN(parsed))
+      if(Number.isNaN(parsed) || parsed < 0 || parsed > 10)
+      {
+          toastError("n only supports 0 < n < 10")
           return 1;
+      }
 
       return Math.min(parsed, 10);
   }
@@ -30,6 +32,21 @@
   let matrixInputsElement: HTMLInputElement[] = [];
   let calculated = 0;
   let isCalculated = false;
+
+  const toastError = (text: string) => {
+      toast.push(text, {
+          theme: {
+              "--toastBackground": "var(--reset)",
+              "--toastBarBackground": "var(--secondary)",
+          },
+          component: {
+              src: Toast,
+              props: {
+                  "text": text,
+              },
+          },
+      });
+  };
 
   function reset()
   {
@@ -54,7 +71,8 @@
 
               if(Number.isNaN(parsed))
               {
-                  console.error("Handle this");
+                  toastError(`Input at (${i + 1}, ${j + 1}) is invalid!`);
+                  return;
               }
 
               matrix.set(i, j, parsed);
@@ -66,20 +84,19 @@
       calculated = Math.round((determinant(matrix) + Number.EPSILON) * ROUND_MULTIPLIER) / ROUND_MULTIPLIER;
       isCalculated = true;
   }
-
-  function changeMode()
-  {
-      theme.set(currentTheme == "light" ? "dark" : "light");
-  }
 </script>
 
 <main>
+    <SvelteToast />
     <div class="content-container">
-        <h1 class="title">Determinant</h1>
+        <div class="title-container">
+            <h1 class="title">Determinant</h1>
+            <Theme />
+        </div>
         <div class="content">
             <div class="content-center">
                 <div class="input-container">
-                    <Input prefix="Size of the matrix (n) = " bind:value={matrixSize} hint="Supports n <= 10" />
+                    <Input prefix="Matrix size (n) = " bind:value={matrixSize} hint="Supports n ≤ 10" />
                 </div>
                 <Separator />
                 <div class="matrix-container">
@@ -113,14 +130,29 @@
         align-self: stretch;
         margin: 0.1em 0.5em;
         margin-bottom: 0.1em;
+        flex: 1;
         font-weight: normal;
+    }
+
+    .title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        width: 100%;
     }
 
     @media only screen and (max-width: 570px) {
         .title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             font-size: 2rem;
-            margin: 1em;
+            margin: 1em 0em;
+        }
+
+        .title-container {
+            height: 6.8em;
         }
     }
 
@@ -141,6 +173,7 @@
         background-color: var(--background1);
         border-radius: 5px;
         max-width: 50rem;
+        min-height: auto;
         width: 100%;
     }
 
@@ -172,5 +205,6 @@
         justify-content: center;
         flex: 1;
         padding: 1em;
+        padding-top: 0em;
     }
 </style>
