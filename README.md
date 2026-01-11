@@ -4,12 +4,12 @@
 
 ## How To Compile
 
-0. Install NPM
+0. Install Node
 
-If in Windows, install it in the npm site, or use command line, and do this,
+Install it in the original site, or if you're in Windows, you can use the ocmmand line, and type,
 
 ```
-winget install npm
+winget install OpenJS.NodeJS
 ```
 
 1. Install all dependencies
