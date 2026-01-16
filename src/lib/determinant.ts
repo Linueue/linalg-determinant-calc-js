@@ -2,10 +2,10 @@ import { Matrix } from './matrix';
 
 const EPSILON = 1e-12;
 
-function getSubmat(matrix: Matrix, row: number, column: number)
+function getMinorMatrix(matrix: Matrix, row: number, column: number)
 {
     const n = matrix.rows;
-    const submatrix = new Matrix(n - 1, n - 1);
+    const minor = new Matrix(n - 1, n - 1);
 
     let subRow = 0;
 
@@ -21,15 +21,16 @@ function getSubmat(matrix: Matrix, row: number, column: number)
             if(j == column)
                 continue;
 
-            submatrix.set(subRow, subCol, matrix.get(i, j));
+            minor.set(subRow, subCol, matrix.get(i, j));
             subCol++;
         }
         subRow++;
     }
 
-    return submatrix;
+    return minor;
 }
 
+// Cofactor expansion
 export function determinant(matrix: Matrix): number
 {
     if(matrix.rows != matrix.columns)
@@ -40,6 +41,7 @@ export function determinant(matrix: Matrix): number
 
     const n = matrix.rows;
 
+    // If n == 2, we don't need another recursive call
     if(n == 2)
     {
         const a = matrix.get(0, 0);
@@ -57,15 +59,20 @@ export function determinant(matrix: Matrix): number
 
     for(let i: number = 0; i < n; i++)
     {
-        const submat: Matrix = getSubmat(matrix, 0, i);
-        // -1^(i + j)
-        const p = Math.pow(-1, (i + 2));
         const c = matrix.get(0, i);
 
+        // Optimization trick
+        // If c is 0, then we don't compute its minor matrix
+        // We are doing EPSILON to account for floating point arithmetic error
         if(Math.abs(c) <= EPSILON)
             continue;
 
-        det += p * c * determinant(submat);
+        const minor: Matrix = getMinorMatrix(matrix, 0, i);
+        // Optimization trick
+        // -1^(i + j)
+        const p = (i % 2 == 0) ? 1 : -1;
+
+        det += p * c * determinant(minor);
     }
 
     return det;
