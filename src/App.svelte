@@ -7,6 +7,7 @@
   import Toast from './components/Toast.svelte'
   import Theme from './components/Theme.svelte'
   import { SvelteToast, toast } from '@zerodevx/svelte-toast'
+  import { tick } from 'svelte';
   import { slide, fade } from 'svelte/transition'
   import { Matrix } from './lib/matrix'
   import { determinant } from './lib/determinant'
@@ -17,10 +18,18 @@
           return 1;
       const parsed = parseInt(size);
 
-      if(Number.isNaN(parsed) || parsed < 0 || parsed > 10)
+      const errorMessage = "n only supports 0 < n ≤ 10";
+
+      if(Number.isNaN(parsed) || parsed < 0)
       {
-          toastError("n only supports 0 < n ≤ 10")
+          toastError(errorMessage)
           return 1;
+      }
+
+      if(parsed > 10)
+      {
+          toastError(errorMessage)
+          return 10;
       }
 
       return Math.min(parsed, 10);
@@ -32,6 +41,7 @@
   let matrixInputsElement: HTMLInputElement[] = [];
   let calculated = 0;
   let isCalculated = false;
+  let calculationElement: HTMLDivElement;
 
   const toastError = (text: string) => {
       toast.push(text, {
@@ -55,7 +65,7 @@
       isCalculated = false;
   }
 
-  function calcDeterminant()
+  async function calcDeterminant()
   {
       isCalculated = false;
 
@@ -83,6 +93,11 @@
       const ROUND_MULTIPLIER = Math.pow(10, ROUND_UP_TO);
       calculated = Math.round((determinant(matrix) + Number.EPSILON) * ROUND_MULTIPLIER) / ROUND_MULTIPLIER;
       isCalculated = true;
+
+      await tick();
+
+      if(calculationElement)
+          calculationElement.scrollIntoView({behavior: "smooth"});
   }
 </script>
 
@@ -109,7 +124,7 @@
                 </div>
                 {#if isCalculated}
                     <div transition:slide={{ duration: 200 }} class="calculation-container">
-                        <div class="calculation-container">
+                        <div class="calculation-container" bind:this={calculationElement}>
                             <Output determinant={calculated} />
                         </div>
                     </div>
