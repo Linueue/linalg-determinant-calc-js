@@ -40,6 +40,11 @@
         margin: 0;
     }
 
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+
     p {
         margin: 0em;
     }

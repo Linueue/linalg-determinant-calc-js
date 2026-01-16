@@ -31,5 +31,6 @@
 
     img {
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 </style>
