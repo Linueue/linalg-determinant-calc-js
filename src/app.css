@@ -20,8 +20,8 @@
   --toastContainerTop: 5rem;
   --toastContainerRight: auto;
   --toastContainerBottom: auto;
-  --toastContainerLeft: calc(50vw - (15rem / 2));
-  --toastWidth: 15rem;
+  --toastContainerLeft: calc(50vw - (20rem / 2));
+  --toastWidth: 20rem;
 }
 
 [data-theme="light"] {

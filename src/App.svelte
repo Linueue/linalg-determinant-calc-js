@@ -19,7 +19,7 @@
 
       if(Number.isNaN(parsed) || parsed < 0 || parsed > 10)
       {
-          toastError("n only supports 0 < n < 10")
+          toastError("n only supports 0 < n ≤ 10")
           return 1;
       }
 
